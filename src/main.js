@@ -40,6 +40,7 @@ import './plugins/register-service-worker';
  */
 
 import './assets/stylus/app.styl';
+import './assets/css/app.css';
 
 /* ============
  * Main App

@@ -39,6 +39,7 @@ export default [
     // If the user needs to be a guest to view this page.
     meta: {
       guest: true,
+      title: 'login simba lite',
     },
   },
 

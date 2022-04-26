@@ -36,22 +36,22 @@ export const register = ({ commit }) => {
 
 export const login = ({ commit }, payload) => {
   store.dispatch('loading/loading');
-  new AuthProxy()
-    .login(payload)
-    .then((response) => {
-      console.log('response',response)
-      commit(types.LOGIN, response);
-      store.dispatch('account/find');
-      Vue.router.push({
-        name: 'home.index',
+  return new AuthProxy()
+      .login(payload)
+      .then((response) => {
+        commit(types.LOGIN, response);
+        store.dispatch('account/find');
+        Vue.router.push({
+          name: 'home.index',
+        });
+        store.dispatch('loading/stoploading');
+      })
+      .catch((e) => {
+        console.log('Request failed...');
+        store.dispatch('loading/stoploading');
+        return Promise.reject(e);
       });
-      store.dispatch('loading/stoploading');
-    })
-    .catch((e) => {
-      console.log(e);
-      console.log('Request failed...');
-      store.dispatch('loading/stoploading');
-    });
+  
 };
 
 export const logout = ({ commit }) => {

@@ -40,6 +40,14 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+const DEFAULT_TITLE = 'Simba Lite';
+
+router.afterEach((to, from) => {
+  Vue.nextTick(() => {
+      document.title = to.meta.title || DEFAULT_TITLE;
+  });
+});
+
 Vue.router = router;
 
 export default {

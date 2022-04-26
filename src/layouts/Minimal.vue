@@ -1,14 +1,11 @@
 <template>
   <div>
-  <v-loading></v-loading>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col col-md-6 col-xs-12">
-        <!-- Content will be placed here -->
+    <v-loading></v-loading>
+    <div id="auth">
+      <div class="row h-100">
         <slot />
       </div>
     </div>
-  </div>
   </div>
 </template>
 
