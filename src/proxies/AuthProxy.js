@@ -7,7 +7,7 @@ class AuthProxy extends Proxy {
    * @param {Object} parameters The query parameters.
    */
   constructor(parameters = {}) {
-    super('oauth', parameters);
+    super('api', parameters);
   }
 
   /**
@@ -28,7 +28,7 @@ class AuthProxy extends Proxy {
       scope: '',
     };
 
-    return this.submit('post', `${this.endpoint}/token`, data);
+    return this.submit('post', `${this.endpoint}/login`, data);
   }
 
   /**
@@ -39,7 +39,7 @@ class AuthProxy extends Proxy {
    * @returns {Promise} The result in a promise.
    */
   register(data) {
-    return this.submit('post', `${this.endpoint}/register`, data);
+    return this.submit('post', `${this.endpoint}/user`, data);
   }
 }
 

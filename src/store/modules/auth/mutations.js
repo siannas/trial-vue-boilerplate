@@ -27,15 +27,21 @@ export default {
     //
   },
 
-  [LOGIN](state, token) {
+  [LOGIN](state, data) {
     state.authenticated = true;
-    localStorage.setItem('id_token', token);
-    Vue.$http.defaults.headers.common.Authorization = `Bearer ${token}`;
+    localStorage.setItem('id_token', data.access_token);
+    Vue.$http.defaults.headers.common.Authorization = `Bearer ${data.access_token}`;
+    Vue.$http.interceptors.request.use((config) => {
+      config.params = config.params || {};
+      config.params['api_token'] = data.access_token;
+      return config;
+    });
   },
 
   [LOGOUT](state) {
     state.authenticated = false;
     localStorage.removeItem('id_token');
     Vue.$http.defaults.headers.common.Authorization = '';
+    console.log(Vue.$http.defaults.params);
   },
 };

@@ -16,10 +16,18 @@ import store from '@/store';
 Axios.defaults.baseURL = process.env.VUE_APP_API_LOCATION;
 Axios.defaults.headers.common.Accept = 'application/json';
 Axios.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    if(store.state.loading.loading == true){
+      store.dispatch('loading/stoploading');
+    }
+    return response;
+  },
   (error) => {
     if (error.response.status === 401) {
       store.dispatch('auth/logout');
+    }
+    if(store.state.loading.loading == true){
+      store.dispatch('loading/stoploading');
     }
 
     return Promise.reject(error);

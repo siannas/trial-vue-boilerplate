@@ -1,4 +1,6 @@
 <template>
+<div>
+  <v-loading></v-loading>
   <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link
@@ -63,6 +65,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -75,13 +78,16 @@
  * Layouts are used to store a lot of shared code.
  * This way the app stays clean.
  */
+import VLoading from '@/components/Loading.vue';
 
 export default {
   /**
    * The name of the layout.
    */
   name: 'DefaultLayout',
-
+  components: {
+    VLoading,
+  },
   /**
    * The data that can be used by the page.
    *
